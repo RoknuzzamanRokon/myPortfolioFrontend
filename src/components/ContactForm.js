@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col, Modal } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Modal, Spinner } from "react-bootstrap";
 import axios from "axios"; // Axios to send HTTP requests
+import "./style.css";
 
 const ContactForm = () => {
   const [validated, setValidated] = useState(false);
@@ -10,6 +11,7 @@ const ContactForm = () => {
     email: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
   const [showThanksModal, setShowThanksModal] = useState(false); // State to handle modal visibility
 
   // Function to update state on input change
@@ -23,13 +25,15 @@ const ContactForm = () => {
     if (!form.checkValidity()) {
       event.stopPropagation();
     } else {
+      setLoading(true);
       try {
         await axios.post("http://localhost:5000/send-email", formData);
-        setShowThanksModal(true); // Show the thanks modal on successful submission
+        setShowThanksModal(true); 
       } catch (error) {
         console.error("There was an error sending the email:", error);
         alert("Failed to send message.");
       }
+      setLoading(false);
     }
     setValidated(true);
   };
@@ -43,7 +47,9 @@ const ContactForm = () => {
     <Container className="my-5">
       <Row className="justify-content-center">
         <Col md={8}>
-          <h2 className="text-center mb-4">Message to Rokunuzzaman</h2>
+          <h2 className="text-center mb-4">
+            Message <span className="rotate">To</span> Rokunuzzaman
+          </h2>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group controlId="formName">
               <Form.Label>Your Name</Form.Label>
@@ -68,7 +74,7 @@ const ContactForm = () => {
                 name="number"
                 value={formData.number}
                 onChange={handleChange}
-                placeholder="Enter your Number"
+                placeholder="Enter your Number with Country code"
               />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid number.
@@ -106,8 +112,27 @@ const ContactForm = () => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Button type="submit" className="mt-4" variant="primary" block>
-              Send Message
+            <Button
+              type="submit"
+              className="mt-4"
+              variant="primary"
+              block
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  {" Loading..."}
+                </>
+              ) : (
+                "Send Message"
+              )}
             </Button>
           </Form>
         </Col>
