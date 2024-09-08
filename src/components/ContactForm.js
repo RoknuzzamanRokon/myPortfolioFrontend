@@ -1,25 +1,31 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Modal } from "react-bootstrap";
 import axios from "axios"; // Axios to send HTTP requests
 
 const ContactForm = () => {
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
+    number: "",
     email: "",
     message: "",
   });
+  const [showThanksModal, setShowThanksModal] = useState(false); // State to handle modal visibility
+
+  // Function to update state on input change
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if (!form.checkValidity()) {
       event.stopPropagation();
     } else {
       try {
-        // Sending form data to the Flask backend
         await axios.post("http://localhost:5000/send-email", formData);
-        alert("Message sent successfully!");
+        setShowThanksModal(true); // Show the thanks modal on successful submission
       } catch (error) {
         console.error("There was an error sending the email:", error);
         alert("Failed to send message.");
@@ -28,15 +34,16 @@ const ContactForm = () => {
     setValidated(true);
   };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleModalClose = () => {
+    setShowThanksModal(false);
+    window.location.reload(); // Refresh the page to clear the form
   };
 
   return (
     <Container className="my-5">
       <Row className="justify-content-center">
         <Col md={8}>
-          <h2 className="text-center mb-4">Contact Rokunuzzaman</h2>
+          <h2 className="text-center mb-4">Message to Rokunuzzaman</h2>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group controlId="formName">
               <Form.Label>Your Name</Form.Label>
@@ -50,6 +57,21 @@ const ContactForm = () => {
               />
               <Form.Control.Feedback type="invalid">
                 Please provide your name.
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group controlId="formNumber" className="mt-3">
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control
+                required
+                type="tel"
+                name="number"
+                value={formData.number}
+                onChange={handleChange}
+                placeholder="Enter your Number"
+              />
+              <Form.Control.Feedback type="invalid">
+                Please provide a valid number.
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -90,6 +112,19 @@ const ContactForm = () => {
           </Form>
         </Col>
       </Row>
+
+      {/* Modal for showing thanks message */}
+      <Modal show={showThanksModal} onHide={handleModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Message Sent successful</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Thanks! I will contact you as soon as possible.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

@@ -2,22 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Typewriter from "typewriter-effect";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS styles
-import "./Home.css"; // Add this for custom styles
+import "aos/dist/aos.css";
+import "./Home.css"; 
 
-import { Link } from "react-router-dom"; // Import Link for navigation
+import { Link } from "react-router-dom"; 
 
 const Home = () => {
-  // Initialize AOS
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration
-      easing: "ease-in-out", // Animation easing
-      once: true, // Only animate once while scrolling
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
     });
   }, []);
 
-  // Store background images
   const backgrounds = [
     require("../assets/images/pic01.jpg"),
     require("../assets/images/pic02.jpg"),
@@ -30,7 +28,6 @@ const Home = () => {
   const [currentBackground, setCurrentBackground] = useState(0);
 
   useEffect(() => {
-    // Change background every 5 seconds
     const interval = setInterval(() => {
       setCurrentBackground(
         (prevBackground) => (prevBackground + 1) % backgrounds.length
@@ -58,11 +55,11 @@ const Home = () => {
             <Typewriter
               options={{
                 strings: [
-                  "I'm a passionate Computer Engineer specializing in web development and AI solutions.",
+                  "I'm a passionate Computer Engineer specializing in software development, web development and AI solutions.",
                 ],
                 autoStart: true,
-                loop: true, // Loop continuously
-                delay: 75, // Delay between each character
+                loop: true,
+                delay: 75,
                 deleteSpeed: 50, // Speed at which the text is deleted
                 pauseFor: 2000, // Pause before starting the typing again
               }}
@@ -87,34 +84,15 @@ const Home = () => {
         </Col>
       </Row>
 
-
-
-
-
-
       {/* Call to Action */}
       <Row className="home-cta text-center py-5">
         <Col>
-          <h2>Visit my project</h2>
+          <h2>Visit my projects</h2>
           <Link to="/projects" className="btn btn-outline-success">
             Projects
           </Link>
         </Col>
       </Row>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       {/* New Projects Section */}
       <Row className="home-projects text-center py-5">
@@ -122,17 +100,18 @@ const Home = () => {
           <h2>Recent Projects</h2>
         </Col>
       </Row>
+
       <Row className="text-center">
-        <Col md={4} data-aos="fade-up">
+        <Col md={4} data-aos="fade-down">
           {" "}
           {/* AOS Animation */}
           <Card className="project-card">
             {" "}
             {/* Custom hover effect */}
             <Card.Body>
-              <Card.Title>Project 1</Card.Title>
+              <Card.Title>My Portfolio</Card.Title>
               <Card.Text>
-                An innovative trading bot for auto-trading on exchanges.
+                This is my portfolio work. Here i use react and flask. It live on AWS.
               </Card.Text>
               <Button
                 href="https://github.com/yourusername/project1"
@@ -151,7 +130,7 @@ const Home = () => {
             {/* Custom hover effect */}
             <Card.Body>
               <Card.Title>Project 2</Card.Title>
-              <Card.Text>A powerful AI-driven StoryTeller bot.</Card.Text>
+              <Card.Text>A powerful AI-driven StoryTeller bot. It is very good for generate story.</Card.Text>
               <Button
                 href="https://github.com/yourusername/project2"
                 variant="primary"
@@ -161,7 +140,7 @@ const Home = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={4} data-aos="fade-up" data-aos-delay="400">
+        <Col md={4} data-aos="fade-down" data-aos-delay="400">
           {" "}
           {/* AOS with delay */}
           <Card className="project-card">
@@ -189,19 +168,19 @@ const Home = () => {
         <Col md={4}>
           <blockquote>
             <p>"Rokunuzzaman's work on our web app was outstanding!"</p>
-            <footer>- Client A</footer>
+            <footer>- Joseph -</footer>
           </blockquote>
         </Col>
         <Col md={4}>
           <blockquote>
             <p>"Amazing work, very professional and responsive."</p>
-            <footer>- Client B</footer>
+            <footer>- Mason -</footer>
           </blockquote>
         </Col>
         <Col md={4}>
           <blockquote>
             <p>"His AI solutions greatly improved our business operations."</p>
-            <footer>- Client C</footer>
+            <footer>- Chef Ayo -</footer>
           </blockquote>
         </Col>
       </Row>
