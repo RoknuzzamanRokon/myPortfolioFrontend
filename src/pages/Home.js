@@ -1,12 +1,221 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import Typewriter from "typewriter-effect";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Import AOS styles
+import "./Home.css"; // Add this for custom styles
+
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 const Home = () => {
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animation duration
+      easing: "ease-in-out", // Animation easing
+      once: true, // Only animate once while scrolling
+    });
+  }, []);
+
+  // Store background images
+  const backgrounds = [
+    require("../assets/images/pic01.jpg"),
+    require("../assets/images/pic02.jpg"),
+    require("../assets/images/pic03.jpg"),
+    require("../assets/images/pic04.jpg"),
+    require("../assets/images/pic05.jpg"),
+  ];
+
+  // State to keep track of the current background
+  const [currentBackground, setCurrentBackground] = useState(0);
+
+  useEffect(() => {
+    // Change background every 5 seconds
+    const interval = setInterval(() => {
+      setCurrentBackground(
+        (prevBackground) => (prevBackground + 1) % backgrounds.length
+      );
+    }, 5000); // 5 seconds
+    return () => clearInterval(interval); // Cleanup the interval
+  }, [backgrounds.length]);
+
   return (
-    <section className="home-section">
-      <h1>Hello, I'm [Your Name]</h1>
-      <p>I'm a [Your Profession].</p>
-      <a href="/projects">See My Work</a>
-    </section>
+    <Container fluid className="home-container">
+      {/* Introduction Section with Dynamic Background */}
+      <Row
+        className="home-intro align-items-center justify-content-center text-center"
+        style={{
+          backgroundImage: `url(${backgrounds[currentBackground]})`,
+        }}
+      >
+        <Col md={8}>
+          <h1 className="display-4">
+            Hi, I'm <span className="highlight">Rokunuzzaman</span>
+          </h1>
+
+          {/* Typewriter Effect Section */}
+          <p className="lead">
+            <Typewriter
+              options={{
+                strings: [
+                  "I'm a passionate Computer Engineer specializing in web development and AI solutions.",
+                ],
+                autoStart: true,
+                loop: true, // Loop continuously
+                delay: 75, // Delay between each character
+                deleteSpeed: 50, // Speed at which the text is deleted
+                pauseFor: 2000, // Pause before starting the typing again
+              }}
+            />
+          </p>
+        </Col>
+      </Row>
+
+      {/* Skills Section */}
+      <Row className="home-skills text-center py-5">
+        <Col md={4}>
+          <h3>Web Development</h3>
+          <p>React, Node.js, Django, HTML/CSS</p>
+        </Col>
+        <Col md={4}>
+          <h3>AI & ML</h3>
+          <p>Python, TensorFlow, Data Science</p>
+        </Col>
+        <Col md={4}>
+          <h3>Cloud Computing</h3>
+          <p>AWS, Azure, Docker</p>
+        </Col>
+      </Row>
+
+
+
+
+
+
+      {/* Call to Action */}
+      <Row className="home-cta text-center py-5">
+        <Col>
+          <h2>Visit my project</h2>
+          <Link to="/projects" className="btn btn-outline-success">
+            Projects
+          </Link>
+        </Col>
+      </Row>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {/* New Projects Section */}
+      <Row className="home-projects text-center py-5">
+        <Col>
+          <h2>Recent Projects</h2>
+        </Col>
+      </Row>
+      <Row className="text-center">
+        <Col md={4} data-aos="fade-up">
+          {" "}
+          {/* AOS Animation */}
+          <Card className="project-card">
+            {" "}
+            {/* Custom hover effect */}
+            <Card.Body>
+              <Card.Title>Project 1</Card.Title>
+              <Card.Text>
+                An innovative trading bot for auto-trading on exchanges.
+              </Card.Text>
+              <Button
+                href="https://github.com/yourusername/project1"
+                variant="primary"
+              >
+                View on GitHub
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={4} data-aos="fade-up" data-aos-delay="200">
+          {" "}
+          {/* AOS with delay */}
+          <Card className="project-card">
+            {" "}
+            {/* Custom hover effect */}
+            <Card.Body>
+              <Card.Title>Project 2</Card.Title>
+              <Card.Text>A powerful AI-driven StoryTeller bot.</Card.Text>
+              <Button
+                href="https://github.com/yourusername/project2"
+                variant="primary"
+              >
+                View on GitHub
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={4} data-aos="fade-up" data-aos-delay="400">
+          {" "}
+          {/* AOS with delay */}
+          <Card className="project-card">
+            {" "}
+            {/* Custom hover effect */}
+            <Card.Body>
+              <Card.Title>E-Commerce Site</Card.Title>
+              <Card.Text>
+                An e-commerce platform with various features for product
+                purchase.
+              </Card.Text>
+              <Button
+                href="https://github.com/yourusername/project3"
+                variant="primary"
+              >
+                View on GitHub
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+
+      {/* Testimonials Section */}
+      <Row className="home-testimonials text-center py-5 bg-light">
+        <Col md={4}>
+          <blockquote>
+            <p>"Rokunuzzaman's work on our web app was outstanding!"</p>
+            <footer>- Client A</footer>
+          </blockquote>
+        </Col>
+        <Col md={4}>
+          <blockquote>
+            <p>"Amazing work, very professional and responsive."</p>
+            <footer>- Client B</footer>
+          </blockquote>
+        </Col>
+        <Col md={4}>
+          <blockquote>
+            <p>"His AI solutions greatly improved our business operations."</p>
+            <footer>- Client C</footer>
+          </blockquote>
+        </Col>
+      </Row>
+
+      {/* Call to Action */}
+      <Row className="home-cta text-center py-5">
+        <Col>
+          <h2>Want to work together?</h2>
+          <Link to="/contact" className="btn btn-outline-success">
+            Contact Me
+          </Link>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

@@ -1,0 +1,246 @@
+.home-container {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.home-intro {
+    background: url('https://via.placeholder.com/1500x400?text=Background+Image') no-repeat center center/cover;
+    color: rgb(79, 19, 19);
+    min-height: 400px;
+}
+
+/* Brighter text with glowing effect */
+.home-intro h1 {
+    font-size: 4rem;
+    /* Increase font size for visibility */
+    font-weight: 900;
+    /* Bold text */
+    color: rgb(139, 7, 123);
+    /* Bright text color */
+    text-shadow: 0 0 10px rgba(22, 120, 82, 0.8), 0 0 20px rgba(7, 16, 69, 0.6);
+    /* Glowing effect */
+}
+
+.home-intro h1 .highlight {
+    color: #1cff07;
+    /* Bright yellow for highlighted part */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(0, 187, 255, 0.6);
+    /* Glowing effect for highlight */
+}
+
+
+
+.home-intro p {
+    font-size: 1.5rem;
+}
+
+.highlight {
+    color: #007bff;
+}
+
+.home-skills {
+    background-color: #f1f1f1;
+}
+
+.home-skills h3 {
+    font-size: 1.8rem;
+    color: #343a40;
+}
+
+.home-skills p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.home-cta {
+    background-color: #343a40;
+    color: white;
+}
+
+.home-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.home-cta button {
+    font-size: 1.2rem;
+}
+
+.home-testimonials blockquote {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #555;
+}
+
+.home-testimonials footer {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-top: 10px;
+}
+
+
+
+
+
+
+.home-testimonials blockquote {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #555;
+}
+
+.home-testimonials footer {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.home-intro {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: background-image 1s ease-in-out;
+    /* Smooth transition effect */
+}
+
+.home-intro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Overlay for better readability */
+    z-index: 1;
+}
+
+.home-intro h1,
+.home-intro p {
+    z-index: 2;
+    color: white;
+    /* White text for contrast */
+}
+
+.highlight {
+    color: #ffc107;
+    /* Customize highlighted text color */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.typing-effect {
+    font-size: 1.5rem;
+    /* Adjust the font size */
+    font-family: 'Courier New', Courier, monospace;
+    /* Gives it a typewriter feel */
+    border-right: 2px solid;
+    /* Creates the blinking cursor */
+    white-space: nowrap;
+    overflow: hidden;
+    /* Hides the text that hasn’t appeared yet */
+    width: 0;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* Typing effect */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* Blinking cursor effect */
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: black;
+    }
+}
+
+
+
+
+
+
+.lead {
+    font-size: 1.75rem;
+    /* Larger font size */
+    font-weight: 600;
+    /* Bolder text */
+    font-family: 'Arial', sans-serif;
+    /* Choose a sleek font */
+    color: #333;
+    /* Customize the text color */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Styles for Projects Section */
+.home-projects {
+    background-color: #f8f9fa;
+}
+
+.home-projects h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.project-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    /* Slight zoom on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* Add subtle shadow on hover */
+}

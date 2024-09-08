@@ -1,0 +1,26 @@
+/* Footer.css or global CSS */
+footer .social-links {
+    list-style-type: none;
+    /* Remove bullets */
+    padding-left: 0;
+    /* Remove padding */
+}
+
+footer .social-links li {
+    display: inline;
+    /* Display links inline */
+    margin-right: 15px;
+    /* Add space between links */
+}
+
+footer .social-links li a {
+    color: #fff;
+    /* Set link color */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+footer .social-links li a:hover {
+    text-decoration: underline;
+    /* Add underline on hover */
+}
