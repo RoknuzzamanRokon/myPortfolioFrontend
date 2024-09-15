@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col, Modal, Spinner } from "react-bootstrap";
-import axios from "axios"; // Axios to send HTTP requests
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  Modal,
+  Spinner,
+} from "react-bootstrap";
+import axios from "axios"; 
 import "./style.css";
 
 const ContactForm = () => {
@@ -12,9 +20,8 @@ const ContactForm = () => {
     message: "",
   });
   const [loading, setLoading] = useState(false);
-  const [showThanksModal, setShowThanksModal] = useState(false); // State to handle modal visibility
+  const [showThanksModal, setShowThanksModal] = useState(false);
 
-  // Function to update state on input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -27,8 +34,12 @@ const ContactForm = () => {
     } else {
       setLoading(true);
       try {
-        await axios.post("http://localhost:5000/send-email", formData);
-        setShowThanksModal(true); 
+        // Use environment variable for API URL
+        await axios.post(
+          `${process.env.REACT_APP_API_URL}/send-email`,
+          formData
+        );
+        setShowThanksModal(true);
       } catch (error) {
         console.error("There was an error sending the email:", error);
         alert("Failed to send message.");
@@ -48,7 +59,7 @@ const ContactForm = () => {
       <Row className="justify-content-center">
         <Col md={8}>
           <h2 className="text-center mb-4">
-            Message <span className="rotate">To</span> Rokunuzzaman
+            Message <span className="rotate">to</span> Rokunuzzaman
           </h2>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group controlId="formName">
@@ -141,7 +152,7 @@ const ContactForm = () => {
       {/* Modal for showing thanks message */}
       <Modal show={showThanksModal} onHide={handleModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Message Sent successful</Modal.Title>
+          <Modal.Title>Message Sent successfully</Modal.Title>
         </Modal.Header>
         <Modal.Body>Thanks! I will contact you as soon as possible.</Modal.Body>
         <Modal.Footer>
