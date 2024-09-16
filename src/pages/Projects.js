@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./Projects.css";
 
 const projectBackground = [require("../assets/images/project_photo1.jpg")];
@@ -62,30 +65,34 @@ const projects = [
 ];
 
 const Projects = () => {
+  const navigate = useNavigate(); 
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
+  const navigateToProject = (path) => {
+    navigate(path); // use navigate function instead of history.push
+  };
+
   return (
     <Container className="my-5">
       <div
         className="project-heading"
-        style={{
-          backgroundImage: `url(${projectBackground[0]})`,
-          backgroundSize: "cover", // Ensures the image covers the entire div
-          backgroundPosition: "center", // Centers the background image
-          height: "300px", // Set the height of the cover photo
-          display: "flex",
-          alignItems: "center", // Center content vertically
-          justifyContent: "center", // Center content horizontally
-          marginBottom: "30px",
-        }}
+        style={{ backgroundImage: `url(${projectBackground[0]})` }}
       >
         <h1 className="text-center mb-4" style={{ color: "white" }}>
           Projects
         </h1>
       </div>
-
       <Row>
         {projects.map((project, index) => (
           <Col md={6} lg={4} key={index} className="mb-4">
-            <Card className="h-100">
+            <Card
+              className="h-100"
+              onClick={() => navigateToProject("/project-detail-path")}
+              data-aos="fade-up"
+            >
               <Card.Img variant="top" src={project.image} alt={project.title} />
               <Card.Body>
                 <Card.Title>{project.title}</Card.Title>
