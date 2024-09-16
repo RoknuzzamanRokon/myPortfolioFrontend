@@ -24,7 +24,6 @@ const Home = () => {
     require("../assets/images/pic05.jpg"),
   ];
 
-  // State to keep track of the current background
   const [currentBackground, setCurrentBackground] = useState(0);
 
   useEffect(() => {
@@ -38,7 +37,6 @@ const Home = () => {
 
   return (
     <Container fluid className="home-container">
-      {/* Introduction Section with Dynamic Background */}
       <Row
         className="home-intro align-items-center justify-content-center text-center"
         style={{

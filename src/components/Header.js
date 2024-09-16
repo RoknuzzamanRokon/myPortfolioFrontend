@@ -1,37 +1,34 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./Header.css";
 
 const Header = () => {
-  const brandStyle = {
-    fontFamily: "'Pacifico', cursive", // Use Pacifico font
-    fontSize: "2rem", // Slightly larger for emphasis
-    fontWeight: "normal", // Pacifico has its own weight
-    color: "#FFD700", // Gold color for elegance
-    transition: "color 0.3s ease, transform 0.3s ease", // Smooth transitions
-    cursor: "pointer", // Indicate interactivity
-  };
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
       <Container>
-        <Navbar.Brand as={Link} to="/" style={brandStyle}>
-          Rokon's Portfolio
+        <Navbar.Brand as={Link} to="/" className="brand-text">
+          R<span className="animated-letter o1">o</span>k
+          <span className="animated-letter o2">o</span>n's P
+          <span className="animated-letter o3">o</span>rtf
+          <span className="animated-letter o4">o</span>li
+          <span className="animated-letter o5">o</span>
         </Navbar.Brand>
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/" className="nav-link-custom">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/about">
+            <Nav.Link as={Link} to="/about" className="nav-link-custom">
               About
             </Nav.Link>
-            <Nav.Link as={Link} to="/projects">
+            <Nav.Link as={Link} to="/projects" className="nav-link-custom">
               Projects
             </Nav.Link>
-            <Nav.Link as={Link} to="/contact">
+            <Nav.Link as={Link} to="/contact" className="nav-link-custom">
               Contact
             </Nav.Link>
           </Nav>

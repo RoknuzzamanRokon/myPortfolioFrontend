@@ -1,0 +1,97 @@
+/* Define keyframes for different animations */
+@keyframes colorChange1 {
+
+    0%,
+    100% {
+        color: #3498db;
+    }
+
+    50% {
+        color: #e74c3c;
+    }
+}
+
+@keyframes colorChange2 {
+
+    0%,
+    100% {
+        color: #3498db;
+    }
+
+    50% {
+        color: #9b59b6;
+    }
+}
+
+@keyframes colorChange3 {
+
+    0%,
+    100% {
+        color: #3498db;
+    }
+
+    50% {
+        color: #f39c12;
+    }
+}
+
+@keyframes colorChange4 {
+
+    0%,
+    100% {
+        color: #3498db;
+    }
+
+    50% {
+        color: #2ecc71;
+    }
+}
+
+@keyframes colorChange5 {
+
+    0%,
+    100% {
+        color: #3498db;
+    }
+
+    50% {
+        color: #d35400;
+    }
+}
+
+/* Apply animations with different timings */
+.o1 {
+    animation: colorChange1 2s infinite;
+}
+
+.o2 {
+    animation: colorChange2 2.5s infinite;
+}
+
+.o3 {
+    animation: colorChange3 3s infinite;
+}
+
+.o4 {
+    animation: colorChange4 3.5s infinite;
+}
+
+.o5 {
+    animation: colorChange5 4s infinite;
+}
+
+.brand-text {
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem !important;
+    color: #fff;
+    /* Default color for non-animated letters */
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.brand-text:hover {
+    transform: scale(1.05);
+}
+
+/* Maintain your existing media queries and nav-link styles */
