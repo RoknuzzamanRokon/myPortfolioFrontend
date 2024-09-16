@@ -32,7 +32,7 @@ const Home = () => {
       setCurrentBackground(
         (prevBackground) => (prevBackground + 1) % backgrounds.length
       );
-    }, 5000); // 5 seconds
+    }, 10000); // 5 seconds
     return () => clearInterval(interval); // Cleanup the interval
   }, [backgrounds.length]);
 
@@ -46,7 +46,7 @@ const Home = () => {
         }}
       >
         <Col md={8}>
-          <h1 className="display-4">
+          <h1 className="display-4 custom-heading">
             Hi, I'm <span className="highlight">Rokunuzzaman</span>
           </h1>
 
@@ -60,7 +60,7 @@ const Home = () => {
                 autoStart: true,
                 loop: true,
                 delay: 75,
-                deleteSpeed: 50, // Speed at which the text is deleted
+                deleteSpeed: 100, // Speed at which the text is deleted
                 pauseFor: 2000, // Pause before starting the typing again
               }}
             />
@@ -72,19 +72,19 @@ const Home = () => {
       <Row className="home-skills text-center py-5">
         <Col md={4}>
           <h3>Web Development</h3>
-          <p>React, Node.js, Django, HTML/CSS</p>
+          <p>Django, Flask, React, Node.js, HTML/CSS</p>
         </Col>
         <Col md={4}>
           <h3>AI & ML</h3>
           <p>Python, TensorFlow, Data Science</p>
         </Col>
         <Col md={4}>
-          <h3>Cloud Computing</h3>
-          <p>AWS, Azure, Docker</p>
+          <h3>Cloud Computing & DataBase</h3>
+          <p>AWS, DigitalOcean, Docker. MySQL, DynamoDB.</p>
         </Col>
       </Row>
 
-      {/* Call to Action */}
+      {/* Call to Action for visit my website */}
       <Row className="home-cta text-center py-5">
         <Col>
           <h2>Visit my projects</h2>
@@ -111,7 +111,8 @@ const Home = () => {
             <Card.Body>
               <Card.Title>My Portfolio</Card.Title>
               <Card.Text>
-                This is my portfolio work. Here i use react and flask. It live on AWS.
+                This is my portfolio work. Here i use react and flask. It live
+                on AWS.
               </Card.Text>
               <Button
                 href="https://github.com/yourusername/project1"
@@ -129,8 +130,11 @@ const Home = () => {
             {" "}
             {/* Custom hover effect */}
             <Card.Body>
-              <Card.Title>Project 2</Card.Title>
-              <Card.Text>A powerful AI-driven StoryTeller bot. It is very good for generate story.</Card.Text>
+              <Card.Title>Trading Bot</Card.Title>
+              <Card.Text>
+                An online auto-trading bot for Coinbase and Binance. Developed
+                backend services and APIs using Python.
+              </Card.Text>
               <Button
                 href="https://github.com/yourusername/project2"
                 variant="primary"
@@ -147,10 +151,10 @@ const Home = () => {
             {" "}
             {/* Custom hover effect */}
             <Card.Body>
-              <Card.Title>E-Commerce Site</Card.Title>
+              <Card.Title>Telegram Bot</Card.Title>
               <Card.Text>
-                An e-commerce platform with various features for product
-                purchase.
+                A Telegram bot for auto trading that handles trades
+                automatically.
               </Card.Text>
               <Button
                 href="https://github.com/yourusername/project3"
@@ -189,7 +193,10 @@ const Home = () => {
       <Row className="home-cta text-center py-5">
         <Col>
           <h2>Want to work together?</h2>
-          <Link to="/contact" className="btn btn-outline-success">
+          <Link
+            to="/contact"
+            className="btn btn-outline-success animated-button"
+          >
             Contact Me
           </Link>
         </Col>

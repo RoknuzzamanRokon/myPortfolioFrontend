@@ -6,6 +6,14 @@ const projectBackground = [require("../assets/images/project_photo1.jpg")];
 
 const projects = [
   {
+    title: "My Portfolio",
+    description:
+      "Showcasing a portfolio of diverse projects that push the boundaries of engineering and deliver real-world impact with precision and creativity.",
+    github: "https://github.com/RoknuzzamanRokon/portfolio",
+    techStack: "React, Flask, AWS for Live hosting.",
+    image: require("../assets/images/myProjectPhoto.jpg"),
+  },
+  {
     title: "Trading Bot",
     description:
       "An online auto-trading bot for Coinbase and Binance. Developed backend services and APIs using Python.",

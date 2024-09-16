@@ -9,23 +9,19 @@
     min-height: 400px;
 }
 
-/* Brighter text with glowing effect */
-.home-intro h1 {
-    font-size: 4rem;
-    /* Increase font size for visibility */
-    font-weight: 900;
-    /* Bold text */
-    color: rgb(139, 7, 123);
-    /* Bright text color */
-    text-shadow: 0 0 10px rgba(22, 120, 82, 0.8), 0 0 20px rgba(7, 16, 69, 0.6);
-    /* Glowing effect */
+.custom-heading {
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+    font-style: italic;
+    color: #555;
 }
 
-.home-intro h1 .highlight {
-    color: #1cff07;
-    /* Bright yellow for highlighted part */
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(0, 187, 255, 0.6);
-    /* Glowing effect for highlight */
+.home-intro h1 {
+    font-weight: 900;
+}
+
+.highlight {
+    color: aqua;
 }
 
 
@@ -34,9 +30,6 @@
     font-size: 1.5rem;
 }
 
-.highlight {
-    color: #007bff;
-}
 
 .home-skills {
     background-color: #f1f1f1;
@@ -140,10 +133,6 @@
     /* White text for contrast */
 }
 
-.highlight {
-    color: #ffc107;
-    /* Customize highlighted text color */
-}
 
 
 
@@ -243,4 +232,44 @@
     /* Slight zoom on hover */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     /* Add subtle shadow on hover */
+}
+
+
+
+
+
+
+.animated-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 16px;
+    color: white;
+    background-color: #f44336;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    animation: pulse 1.5s infinite;
+    transition: background-color 0.3s;
+}
+
+.animated-button:hover {
+    background-color: #ffffff;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 1 0 5px rgb(244, 56, 19);
+    }
+
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgb(234, 42, 9);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgb(255, 0, 0);
+    }
 }
