@@ -1,0 +1,68 @@
+/* src/pages/ProjectDetail.css */
+
+/* Styles for headings */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Styles for paragraphs */
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.carousel {
+    width: 100%;
+    /* Ensure the carousel itself is also set to 100% width */
+}
+
+/* Carousel image styles */
+.carousel img {
+    width: 100% !important;
+    /* Ensures full width, overrides other styles */
+    height: auto;
+    /* Maintains image aspect ratio */
+    object-fit: contain;
+    /* Ensures full visibility without cropping */
+}
+
+/* Flexible height for carousel items */
+.carousel-item {
+    height: auto;
+}
+
+/* Position carousel controls at the bottom */
+.carousel-control-prev,
+.carousel-control-next {
+    top: auto;
+    bottom: 10px;
+}
+
+/* Styles for carousel indicators */
+.carousel-indicators {
+    bottom: 10px;
+}
+
+/* Customize appearance of carousel navigation icons */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black background */
+    border-radius: 50%;
+    /* Circular shape */
+    padding: 10px;
+    /* Larger clickable area */
+}
+
+
+.button-class {
+    margin-bottom: 20px;
+
+}
+
+.button-class:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+

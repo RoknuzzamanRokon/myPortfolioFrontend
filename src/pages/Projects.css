@@ -1,4 +1,9 @@
 .card:hover {
+    background-color: #f8f9fa;
+    /* Light gray background on hover */
+}
+
+.project-card:hover {
     transform: scale(1.05);
-    transition: transform .3s ease-in-out;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }

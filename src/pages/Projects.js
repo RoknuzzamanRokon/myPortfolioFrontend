@@ -1,102 +1,96 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./Projects.css";
+import projects from "../data/projectsData"; // Adjust the path as necessary
 
 const projectBackground = [require("../assets/images/project_photo1.jpg")];
 
-const projects = [
-  {
-    title: "My Portfolio",
-    description:
-      "Showcasing a portfolio of diverse projects that push the boundaries of engineering and deliver real-world impact with precision and creativity.",
-    github: "https://github.com/RoknuzzamanRokon/portfolio",
-    techStack: "React, Flask, AWS for Live hosting.",
-    image: require("../assets/images/myProjectPhoto.jpg"),
-  },
-  {
-    title: "Trading Bot",
-    description:
-      "An online auto-trading bot for Coinbase and Binance. Developed backend services and APIs using Python.",
-    github: "https://github.com/RoknuzzamanRokon/trading-bot",
-    techStack: "AWS (Lambda, DynamoDB, API Gateway, EC2), React",
-    image: require("../assets/images/tradingBotPhoto.jpg"),
-  },
-  {
-    title: "Telegram Bot",
-    description:
-      "A Telegram bot for auto trading that handles trades automatically.",
-    github: "https://github.com/RoknuzzamanRokon/telegram-bot",
-    techStack: "VPS (Contabo), Telegram Bot Father",
-    image: require("../assets/images/telegramTradingBotPhoto.jpg"),
-  },
-  {
-    title: "StoryTeller Bot",
-    description: "An online bot that generates stories based on user input.",
-    github: "https://github.com/RoknuzzamanRokon/Story_teller_with_django",
-    techStack: "Django, MySQL, React",
-    image: require("../assets/images/storyGenarator.jpg"),
-  },
-  {
-    title: "E-Shop",
-    description:
-      "An online e-commerce site offering various products for easy purchase.",
-    github: "https://github.com/RoknuzzamanRokon/E-commerce_site",
-    techStack: "Django, MySQL, React",
-    image: require("../assets/images/ecomarcePhotp.jpg"),
-  },
-  {
-    title: "User Login System",
-    description: "It a customer login system using dynamodb",
-    github:
-      "https://github.com/RoknuzzamanRokon/portfolio_short_project_for_AsthaIT",
-    techStack: "HTML, CSS, JavaScript, Dynamodb",
-    image: require("../assets/images/userLogin.jpg"),
-  },
-  {
-    title: "Snake Game",
-    description: "Its a offline fun for small project.",
-    github: "https://github.com/RoknuzzamanRokon/Snake_Game",
-    techStack: "Python, tkinter",
-    image: require("../assets/images/snakeGamePhoto.jpg"),
-  },
-];
-
 const Projects = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const [expanded, setExpanded] = useState(null); // Tracks the id of the expanded project
 
   useEffect(() => {
     AOS.init();
   }, []);
 
   const navigateToProject = (path) => {
-    navigate(path); // use navigate function instead of history.push
+    navigate(path);
+  };
+
+  const toggleDescription = (id) => {
+    setExpanded(expanded === id ? null : id);
+  };
+
+  const renderDescription = (description, id) => {
+    const words = description.split(" ");
+    if (expanded === id) {
+      return (
+        <>
+          <Card.Text>{description}</Card.Text>
+          <Button
+            variant="link"
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleDescription(id);
+            }}
+          >
+            Show Less
+          </Button>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Card.Text>{words.slice(0, 10).join(" ")}...</Card.Text>
+          <Button
+            variant="link"
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleDescription(id);
+            }}
+          >
+            Show More
+          </Button>
+        </>
+      );
+    }
   };
 
   return (
     <Container className="my-5">
       <div
         className="project-heading"
-        style={{ backgroundImage: `url(${projectBackground[0]})` }}
+        style={{
+          backgroundImage: `url(${projectBackground[0]})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          height: "300px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "white",
+          marginBottom: "30px",
+        }}
       >
-        <h1 className="text-center mb-4" style={{ color: "white" }}>
-          Projects
-        </h1>
+        <h1 className="text-center mb-4">Projects</h1>
       </div>
       <Row>
-        {projects.map((project, index) => (
-          <Col md={6} lg={4} key={index} className="mb-4">
+        {projects.map((project) => (
+          <Col md={6} lg={4} key={project.id} className="mb-4">
             <Card
-              className="h-100"
-              onClick={() => navigateToProject("/project-detail-path")}
+              className="project-card"
               data-aos="fade-up"
+              onClick={() => navigateToProject(`/projects/${project.id}`)}
+              style={{ cursor: "pointer" }}
             >
               <Card.Img variant="top" src={project.image} alt={project.title} />
               <Card.Body>
                 <Card.Title>{project.title}</Card.Title>
-                <Card.Text>{project.description}</Card.Text>
+                {renderDescription(project.description, project.id)}
                 <p>
                   <strong>Tech Stack:</strong> {project.techStack}
                 </p>
@@ -105,6 +99,7 @@ const Projects = () => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()} // Prevent card click when clicking the button
                 >
                   View on GitHub
                 </Button>
