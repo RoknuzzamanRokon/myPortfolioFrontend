@@ -1,54 +1,73 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Typewriter from "typewriter-effect";
-import AOS from "aos";
+import AOS from 'aos';
 import "aos/dist/aos.css";
 import "./Home.css"; 
 
 import { Link } from "react-router-dom"; 
 
-const Home = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      easing: "ease-in-out",
-      once: true,
-    });
-  }, []);
 
+const Home = () => {
+  // Declare the background images array outside of the useEffect
   const backgrounds = [
     require("../assets/images/pic01.jpg"),
     require("../assets/images/pic02.jpg"),
     require("../assets/images/pic03.jpg"),
     require("../assets/images/pic04.jpg"),
     require("../assets/images/pic05.jpg"),
+    require("../assets/images/pic06.jpg"),
+    require("../assets/images/pic07.jpg"),
+    require("../assets/images/pic08.jpg"),
+    require("../assets/images/pic09.jpg"),
+    require("../assets/images/pic10.jpg"),
+    require("../assets/images/pic11.jpg"),
   ];
 
+  // State for the current background index and the opacity
   const [currentBackground, setCurrentBackground] = useState(0);
+  const [opacity, setOpacity] = useState(1);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // values from 0 to 3000, with step 50ms
+      easing: "ease", // default easing for AOS animations
+      once: false, // whether animation should happen only once - while scrolling down
+      mirror: true, // whether elements should animate out while scrolling past them
+    });
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentBackground(
-        (prevBackground) => (prevBackground + 1) % backgrounds.length
-      );
-    }, 10000); // 5 seconds
-    return () => clearInterval(interval); // Cleanup the interval
-  }, [backgrounds.length]);
+      // Begin the fade-out process
+      setOpacity(0);
+      setTimeout(() => {
+        // Change the background image index and fade back in
+        setCurrentBackground(prevBackground => (prevBackground + 1) % backgrounds.length);
+        setOpacity(1);
+      }, 1000); // This should be half the interval time for a smooth transition
+    }, 10000); // 10 seconds for each background image change
+
+    // Clean up the interval on component unmount
+    return () => clearInterval(interval);
+  }, []); // Empty dependency array means this effect runs only once after the initial render
+
 
   return (
     <Container fluid className="home-container">
-      <Row
-        className="home-intro align-items-center justify-content-center text-center"
-        style={{
-          backgroundImage: `url(${backgrounds[currentBackground]})`,
-        }}
-      >
-        <Col md={8}>
+      <Row className="home-intro align-items-center justify-content-center text-center">
+        <div
+          className="background-image"
+          style={{
+            backgroundImage: `url(${backgrounds[currentBackground]})`,
+            opacity: opacity,
+            transition: "opacity 1s ease-in-out",
+          }}
+        />
+        <Col md={8} className="text-content">
           <h1 className="display-4 custom-heading">
             Hi, I'm <span className="highlight">Rokunuzzaman</span>
           </h1>
-
-          {/* Typewriter Effect Section */}
           <p className="lead">
             <Typewriter
               options={{
@@ -58,8 +77,6 @@ const Home = () => {
                 autoStart: true,
                 loop: true,
                 delay: 75,
-                deleteSpeed: 100, // Speed at which the text is deleted
-                pauseFor: 2000, // Pause before starting the typing again
               }}
             />
           </p>
@@ -92,6 +109,14 @@ const Home = () => {
         </Col>
       </Row>
 
+
+
+
+
+
+
+
+      
       {/* New Projects Section */}
       <Row className="home-projects text-center py-5">
         <Col>
@@ -130,8 +155,8 @@ const Home = () => {
             <Card.Body>
               <Card.Title>Trading Bot</Card.Title>
               <Card.Text>
-                An online auto-trading bot for Coinbase and Binance. Developed
-                backend services and APIs using Python.
+                An online auto-trading bot for Coinbase and Binance. Backend for
+                using Python.
               </Card.Text>
               <Button
                 href="https://github.com/yourusername/project2"
@@ -165,6 +190,12 @@ const Home = () => {
         </Col>
       </Row>
 
+
+
+
+
+
+
       {/* Testimonials Section */}
       <Row className="home-testimonials text-center py-5 bg-light">
         <Col md={4}>
@@ -175,7 +206,7 @@ const Home = () => {
         </Col>
         <Col md={4}>
           <blockquote>
-            <p>"Amazing work, very professional and responsive."</p>
+            <p>"Amazing work, very professional and responsive.Thank you."</p>
             <footer>- Mason -</footer>
           </blockquote>
         </Col>

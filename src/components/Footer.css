@@ -1,31 +1,74 @@
-/* Footer.css or global CSS */
-footer .social-links {
-    list-style-type: none;
-    /* Remove bullets */
-    padding-left: 0;
-    /* Remove padding */
-}
+/* Footer.css */
 
-footer .social-links li {
-    display: inline;
-    /* Display links inline */
-    margin-right: 15px;
-    /* Add space between links */
-}
-
-footer .social-links li a {
-    color: #fff;
-    /* Set link color */
-    text-decoration: none;
-    /* Remove underline */
-}
-
-footer .social-links li a:hover {
-    text-decoration: underline;
-    /* Add underline on hover */
+/* Basic styling */
+footer {
+    background: #e2e0e0;
+    /* Dark background for footer */
+    text-align: center;
 }
 
 .footer-text {
     font-size: 0.8rem;
+    /* Default font size for large devices */
     margin-bottom: 0.5rem;
+}
+
+/* Social links styling */
+.social-links {
+    list-style-type: none;
+    /* Remove bullets */
+    padding-left: 0;
+    /* Remove padding */
+    margin: 0 auto;
+    /* Center align the list */
+}
+
+.social-links li {
+    display: inline;
+    /* Display links inline */
+    margin: 0 15px;
+    /* Space between links */
+}
+
+.social-links li a {
+    color: #ddd;
+    /* Light gray color for links */
+    text-decoration: none;
+    /* Remove underline */
+    padding: 5px;
+    /* Padding for tap targets */
+}
+
+.social-links li a:hover {
+    text-decoration: underline;
+    /* Underline on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-text {
+        font-size: 0.7rem;
+        /* Smaller font size on medium devices */
+    }
+
+    .social-links li {
+        display: block;
+        /* Stack links vertically */
+        margin: 10px auto;
+        /* Center align each link with margin */
+    }
+
+    .social-links li a {
+        display: inline-block;
+        /* Ensure padding takes effect */
+        width: 100%;
+        /* Full width links for easier tap */
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-text {
+        font-size: 0.6rem;
+        /* Even smaller font size on small devices */
+    }
 }

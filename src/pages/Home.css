@@ -1,169 +1,109 @@
+/* General Layout */
 .home-container {
     min-height: 100vh;
     background-color: #f8f9fa;
 }
 
-.home-intro {
-    background: url('https://via.placeholder.com/1500x400?text=Background+Image') no-repeat center center/cover;
-    color: rgb(79, 19, 19);
-    min-height: 400px;
-}
-
 .custom-heading {
-    font-family: 'Roboto', sans-serif;
-    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Pacifico', cursive;
     font-style: italic;
     color: #555;
-}
-
-.home-intro h1 {
-    font-weight: 900;
 }
 
 .highlight {
-    color: aqua;
-}
-
-
-
-.home-intro p {
-    font-size: 1.5rem;
-}
-
-
-.home-skills {
-    background-color: #f1f1f1;
-}
-
-.home-skills h3 {
-    font-size: 1.8rem;
-    color: #343a40;
-}
-
-.home-skills p {
-    font-size: 1.1rem;
-    color: #555;
-}
-
-.home-cta {
-    background-color: #343a40;
-    color: white;
-}
-
-.home-cta h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.home-cta button {
-    font-size: 1.2rem;
-}
-
-.home-testimonials blockquote {
-  font-size: 1.2rem;
-  font-style: italic;
-  color: #555;
-}
-
-.home-testimonials footer {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #007bff;
-  margin-top: 10px;
-}
-
-
-
-
-
-
-.home-testimonials blockquote {
-    font-size: 1.2rem;
-    font-style: italic;
-    color: #555;
-}
-
-.home-testimonials footer {
-    font-size: 1rem;
     font-weight: bold;
-    color: #007bff;
-    margin-top: 10px;
+    font-size: 55px;
+    color: #84e407;
 }
 
-
-
-
-
-
-
-
-
-
-
+/* Home Intro Section with Blurred Background Image */
 .home-intro {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: relative;
     min-height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    position: relative;
-    transition: background-image 1s ease-in-out;
-    /* Smooth transition effect */
+    overflow: hidden;
 }
 
-.home-intro::before {
-    content: '';
+.background-image {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Overlay for better readability */
+    right: 0;
+    bottom: 0;
+    background: url('https://via.placeholder.com/1500x400?text=Background+Image') no-repeat center center/cover;
+    background-size: cover;
+    filter: blur(5px);
+    transition: opacity 1ms ease-in-out;
     z-index: 1;
 }
 
-.home-intro h1,
-.home-intro p {
+.text-content {
+    position: relative;
     z-index: 2;
     color: white;
-    /* White text for contrast */
 }
 
+/* Skills Section */
+.home-skills {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 20px 0;
+}
 
+.home-skills h3,
+.home-skills p {
+    color: #343a40;
+}
 
+/* Call to Action Section */
+.home-cta {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
 
+.home-cta h2,
+.home-cta button {
+    margin-bottom: 20px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+/* Typing Effect Styles */
 .typing-effect {
     font-size: 1.5rem;
-    /* Adjust the font size */
-    font-family: 'Courier New', Courier, monospace;
-    /* Gives it a typewriter feel */
-    border-right: 2px solid;
-    /* Creates the blinking cursor */
-    white-space: nowrap;
-    overflow: hidden;
-    /* Hides the text that hasn’t appeared yet */
-    width: 0;
+    font-family: 'Courier New', monospace;
     animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
-/* Typing effect */
+/* Projects Section */
+.home-projects {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Testimonials Section */
+.home-testimonials {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.home-testimonials blockquote,
+.home-testimonials footer {
+    color: #555;
+}
+
+/* Animation Keyframes */
 @keyframes typing {
     from {
         width: 0;
@@ -174,7 +114,6 @@
     }
 }
 
-/* Blinking cursor effect */
 @keyframes blink-caret {
 
     from,
@@ -187,70 +126,32 @@
     }
 }
 
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
 
-
-
-
-
-.lead {
-    font-size: 1.75rem;
-    /* Larger font size */
-    font-weight: 600;
-    /* Bolder text */
-    font-family: 'Arial', sans-serif;
-    /* Choose a sleek font */
-    color: #333;
-    /* Customize the text color */
+    .home-intro p,
+    .home-skills h3,
+    .home-cta h2 {
+        font-size: 0.7rem;
+    }
 }
 
+@media (max-width: 576px) {
 
-
-
-
-
-
-
-
-
-
-/* Styles for Projects Section */
-.home-projects {
-    background-color: #f8f9fa;
+    .home-intro p,
+    .home-skills p,
+    .home-testimonials blockquote,
+    .home-testimonials footer {
+        font-size: 0.6rem;
+    }
 }
-
-.home-projects h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-}
-
-.project-card {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.project-card:hover {
-    transform: scale(1.05);
-    /* Slight zoom on hover */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    /* Add subtle shadow on hover */
-}
-
-
-
-
-
 
 .animated-button {
-    display: inline-block;
     padding: 15px 30px;
     font-size: 16px;
-    color: white;
     background-color: #f44336;
-    border: none;
     border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
     animation: pulse 1.5s infinite;
-    transition: background-color 0.3s;
 }
 
 .animated-button:hover {
@@ -258,18 +159,15 @@
 }
 
 @keyframes pulse {
-    0% {
+
+    0%,
+    100% {
         transform: scale(1);
-        box-shadow: 1 0 5px rgb(244, 56, 19);
+        box-shadow: 0 0 5px rgb(244, 67, 54);
     }
 
     50% {
         transform: scale(1.1);
-        box-shadow: 0 0 20px rgb(234, 42, 9);
-    }
-
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 5px rgb(255, 0, 0);
+        box-shadow: 0 0 20px rgb(244, 67, 54);
     }
 }
